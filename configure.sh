@@ -53,9 +53,9 @@ sed -i --follow-symlinks 's/^SELINUX=.*/SELINUX=disabled/g' /etc/sysconfig/selin
 #Install and configure ZSH
 yum install zsh -y
 cd ~ && git clone https://github.com/zimmertr/zsh-Configuration.git 
-cp zsh-Configuration/.zshrc\ \(Ubuntu\) /root/.zshrc 
-cp zsh-Configuration/.zshrc\ \(Ubuntu\) /home/tj/.zshrc 
-cp zsh-Configuration/vimrc\ \(Ubuntu\) /etc/vimrc 
+cp zsh-Configuration/.zshrc\ \(CentOS\) /root/.zshrc 
+cp zsh-Configuration/.zshrc\ \(CentOS\) /home/tj/.zshrc 
+cp zsh-Configuration/vimrc\ \(CentOS\) /etc/vimrc 
 
 #Add ZSH Plugins
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)" 

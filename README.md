@@ -1,8 +1,8 @@
 # Base-Configurator
-Just a simple shell script to prep a newly provisioned machine. Has since been replaced by Chef.
 
+Just some simple shell scripts for basic first-boot provisioning of my computers.
 
 
 To execute easily and dangerously simply:
 
-`curl https://raw.githubusercontent.com/zimmertr/Base-Configurator/master/configure.sh | bash`
+`curl https://raw.githubusercontent.com/zimmertr/Base-Configurator/master/>SCRIPT FILENAME HERE<.sh | bash`

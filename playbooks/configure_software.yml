@@ -65,7 +65,7 @@
       shell: cp /home/{{ user_name }}/git/zsh-Configuration/.zshrc\ \(Arch\)  /home/{{ user_name }}/.zshrc
 
     - name: Copying vim configuration.
-      shell: cp /home/{{ user_name }}/git/zsh-Configuration/vimrc\ \(Arch\)  /etc/vimrc
+      shell: cp /home/{{ user_name }}/git/zsh-Configuration/vimrc\ \(Arch\)  /home/{{ user_name}}/.vimrc
 
     - name: Updating user shell.
       user:

@@ -25,7 +25,7 @@
 
     - name: Installing base packages.
       pacman:
-        name: alsa-utils bc bmon calc exfat-utils feh go git grub-customizer htop intel-ucode iotop lib32-nvidia-utils lm_sensors lsof mlocate net-tools nmap ntfs-3g numlockx nvidia pasystray pinta pavucontrol playerctl python-gobject scrot screen shotwell speedtest-cli sshfs sysstat terminator tree unrar unzip vim vlc wget xorg-xinit zsh zsh-completions
+        name: alsa-utils bc bmon calc dnsutils exfat-utils feh go git grub-customizer htop intel-ucode iotop lib32-nvidia-utils lm_sensors lsof mlocate net-tools nmap ntfs-3g numlockx nvidia pasystray pinta pavucontrol playerctl python-gobject scrot screen shotwell speedtest-cli sshfs sysstat terminator tree unrar unzip vim vlc wget xorg-xinit zsh zsh-completions
         state: present
 
     - name: Downloading the yay AUR helper. 
@@ -57,7 +57,7 @@
       shell: sudo -H -u {{ user_name }} bash -c "yay -S --noconfirm google-chrome"
 
     - name: Installing i3wm.
-      shell: sudo -H -u {{ user_name }} bash -c "yay -S --noconfirm i3-gaps-next-git i3blocks-gaps-git i3status-git i3lock compton dmenu dunst volumeicon "
+      shell: sudo -H -u {{ user_name }} bash -c "yay -S --noconfirm i3-gaps-next-git i3blocks-gaps-git i3status-git i3lock compton dmenu dunst pasystray"
       ignore_errors: yes 
 
     - name: Installing Redshift.

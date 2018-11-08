@@ -24,13 +24,16 @@
         repo: https://github.com/zimmertr/i3wm-Configuration.git
 
     - name: Copying i3blocks config.
-      shell: cp /home/{{ user_name }}/git/i3wm-Configuration/Desktop/i3blocks_4k_desktop /etc/i3blocks.conf
+      shell: cp /home/{{ user_name }}/git/i3wm-Configuration/Desktop/i3blocks.conf /etc/i3blocks.conf
 
     - name: Copying i3 config.
-      shell: cp /home/{{ user_name }}/git/i3wm-Configuration/Desktop/i3config_4k_desktop /etc/i3/config
+      shell: cp /home/{{ user_name }}/git/i3wm-Configuration/Desktop/config /etc/i3/config
 
     - name: Copying i3 scripts.
       shell: cp -r /home/{{ user_name }}/git/i3wm-Configuration/Scripts/* /usr/lib/i3blocks/
+
+    - name: Copying background image.
+      shell: mkdir -p /home/{{ user_name }}/Pictures/Wallpapers && cp /home/{{ user_name }}/git/i3wm-Configuration/Desktop/Jupiter.png /home/{{ user_name }}/Pictures/Wallpapers/Jupiter.png
 
     - name: Install fonts.
       pacman:

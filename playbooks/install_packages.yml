@@ -25,7 +25,7 @@
 
     - name: Installing base packages.
       pacman:
-        name: alsa-utils bc bmon calc exfat-utils feh go git grub-customizer htop iotop lib32-nvidia-utils lm_sensors lsof mlocate net-tools nmap ntfs-3g numlockx nvidia pasystray pinta pavucontrol playerctl python-gobject scrot screen shotwell speedtest-cli sshfs sysstat terminator tree unrar unzip vim vlc wget xorg-xinit zsh zsh-completions
+        name: alsa-utils bc bmon calc exfat-utils feh go git grub-customizer htop intel-ucode iotop lib32-nvidia-utils lm_sensors lsof mlocate net-tools nmap ntfs-3g numlockx nvidia pasystray pinta pavucontrol playerctl python-gobject scrot screen shotwell speedtest-cli sshfs sysstat terminator tree unrar unzip vim vlc wget xorg-xinit zsh zsh-completions
         state: present
 
     - name: Downloading the yay AUR helper. 

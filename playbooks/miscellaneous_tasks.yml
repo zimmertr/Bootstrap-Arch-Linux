@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Enabling SSH Server.
+      systemd:
+        name: sshd
+        enabled: yes
+        state: started
+
+    - name: Enabling Docker.
+      systemd:
+        name: docker
+        enabled: yes
+        state: started
+
+    - name: Checking for hardware sensors.
+      shell: sensors-detect --auto
+
+    - name: Updating mlocate database.
+      shell: updatedb

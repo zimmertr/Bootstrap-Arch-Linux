@@ -1,0 +1,81 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Enabling and starting dhcpcd.
+      systemd: 
+        name: dhcpcd
+        state: started
+        enabled: yes
+
+    - name: Waiting for the network to become available. 
+      wait_for:
+        host: www.google.com
+        port: 443
+        state: started
+        timeout: 60
+        msg: Networking or DNS is not available. Exiting.
+
+    - name: Enabling multilib repository.
+      shell: sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
+
+    - name: Performing a package upgrade.
+      pacman:
+        upgrade: yes
+        update_cache: yes
+
+    - name: Installing base packages.
+      pacman:
+        name: alsa-utils bc bmon calc exfat-utils feh go git grub-customizer htop iotop lib32-nvidia-utils lm_sensors lsof mlocate net-tools nmap ntfs-3g numlockx nvidia pasystray pinta pavucontrol playerctl python-gobject scrot screen shotwell speedtest-cli sshfs sysstat terminator tree unrar unzip vim vlc wget xorg-xinit zsh zsh-completions
+        state: present
+
+    - name: Downloading the yay AUR helper. 
+      git:
+        repo: https://aur.archlinux.org/yay.git 
+        dest: /home/{{ user_name }}/git/yay
+
+    - name: Correcting permissions for repository.
+      file:
+        path: /home/{{ user_name }}/git/yay
+        owner: "{{ user_name }}"
+        recurse: yes
+
+    - name: Installing the yay AUR helper.
+      shell: sudo -H -u {{ user_name }} bash -c "cd /home/{{ user_name }}/git/yay && makepkg -si --noconfirm"
+
+    - name: Installing checkupdates-aur.
+      shell: sudo -H -u {{ user_name }} bash -c "yay -S --noconfirm checkupdates-aur"
+      ignore_errors: yes
+
+    - name: Installing Discord.
+      shell: sudo -H -u {{ user_name }} bash -c "yay -S --noconfirm discord-canary"
+
+    - name: Installing Docker.
+      shell: sudo -H -u {{ user_name }} bash -c "yay -S --noconfirm docker"
+      ignore_errors: yes
+
+    - name: Installing Google Chrome.
+      shell: sudo -H -u {{ user_name }} bash -c "yay -S --noconfirm google-chrome"
+
+    - name: Installing i3wm.
+      shell: sudo -H -u {{ user_name }} bash -c "yay -S --noconfirm i3-gaps-next-git i3blocks-gaps-git i3status-git i3lock compton dmenu dunst volumeicon "
+      ignore_errors: yes 
+
+    - name: Installing Redshift.
+      shell: sudo -H -u {{ user_name }} bash -c "yay -S --noconfirm redshift"
+      ignore_errors: yes
+
+    - name: Installing Slack.
+      shell: sudo -H -u {{ user_name }} bash -c "yay -S --noconfirm slack-desktop"
+      ignore_errors: yes
+
+    - name: Installing Spotify.
+      shell: sudo -H -u {{ user_name }} bash -c "yay -S --noconfirm spotify-stable"
+      ignore_errors: yes
+
+    - name: Installing Sublime.
+      shell: sudo -H -u {{ user_name }} bash -c "yay -S --noconfirm sublime-text-dev"
+      ignore_errors: yes
+
+    - name: Installing Zoom.
+      shell: sudo -H -u {{ user_name }} bash -c "yay -S --noconfirm zoom"
+      ignore_errors: yes

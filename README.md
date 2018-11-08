@@ -1,8 +1,5 @@
-# Base-Configurator
+# Bootstrap Arch Linux
 
-Just some simple shell scripts for basic first-boot provisioning of my computers.
+Basic Ansible project to provision my Arch Linux workstation.
 
-
-To execute easily and dangerously simply:
-
-`curl https://raw.githubusercontent.com/zimmertr/Base-Configurator/master/>SCRIPT FILENAME HERE<.sh | bash`
+`ansible-playbook -e @vars.yml site.yml`

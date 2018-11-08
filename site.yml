@@ -1,0 +1,5 @@
+---
+- import_playbook: playbooks/create_user.yml
+- import_playbook: playbooks/install_packages.yml
+- import_playbook: playbooks/configure_software.yml
+- import_playbook: playbooks/miscellaneous_tasks.yml 

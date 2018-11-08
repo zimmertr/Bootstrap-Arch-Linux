@@ -1,0 +1,73 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Configuring ~/.Xresources.
+      blockinfile:
+        path: /home/{{ user_name }}/.Xresources
+        create: yes
+        block: |
+          Xcursor.size: 16
+          Xft.dpi: 90
+
+    - name: Configuring ~/.xinitrc.
+      blockinfile:
+        path: /home/{{ user_name }}/.xinitrc
+        create: yes
+        block: |
+          export SSH_AUTH_SOCK
+          xrdb ~/.Xresources
+          exec i3
+
+    - name: Cloning i3wm repository.
+      git:
+        dest: /home/{{ user_name }}/git/i3wm-Configuration
+        repo: https://github.com/zimmertr/i3wm-Configuration.git
+
+    - name: Copying i3blocks config.
+      shell: cp /home/{{ user_name }}/git/i3wm-Configuration/Desktop/i3blocks_4k_desktop /etc/i3blocks.conf
+
+    - name: Copying i3 config.
+      shell: cp /home/{{ user_name }}/git/i3wm-Configuration/Desktop/i3config_4k_desktop /etc/i3/config
+
+    - name: Copying i3 scripts.
+      shell: cp -r /home/{{ user_name }}/git/i3wm-Configuration/Scripts/* /usr/lib/i3blocks/
+
+    - name: Install fonts.
+      pacman:
+        name: adobe-source-code-pro-fonts ttf-dejavu ttf-liberation noto-fonts
+        state: present
+
+    - name: Disabling embedded bitmaps for fonts.
+      shell: ln -fs /etc/fonts/conf.avail/70-no-bitmaps.conf /etc/fonts/conf.d
+
+    - name: Enabling sub-pixel RGB rendering.
+      shell: ln -fs /etc/fonts/conf.avail/10-sub-pixel-rgb.conf /etc/fonts/conf.d
+
+    - name: Enabling the LCD filter to reduce color fringing.
+      shell: ln -fs /etc/fonts/conf.avail/11-lcdfilter-default.conf /etc/fonts/conf.d
+
+    - name: Cloning oh-my-zsh
+      git:
+        dest: /home/{{ user_name }}/.oh-my-zsh
+        repo: https://github.com/robbyrussell/oh-my-zsh.git
+
+    - name: Cloning zsh-syntax-highlighting
+      git: 
+        dest: /home/{{ user_name }}/.zsh-syntax-highlighting
+        repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+
+    - name: Cloning personal zsh repository.
+      git:
+        dest: /home/{{ user_name }}/git/zsh-Configuration
+        repo: https://github.com/zimmertr/zsh-Configuration.git
+
+    - name: Copying ZSH configuration.
+      shell: cp /home/{{ user_name }}/git/zsh-Configuration/.zshrc\ \(Arch\)  /home/{{ user_name }}/.zshrc
+
+    - name: Copying vim configuration.
+      shell: cp /home/{{ user_name }}/git/zsh-Configuration/vimrc\ \(Arch\)  /etc/vimrc
+
+    - name: Updating user shell.
+      user:
+        name: "{{ user_name }}"
+        shell: /usr/bin/zsh

@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  vars_prompt:
+    - name: user_password
+      prompt: Please enter a password for your user account
+      private: yes
+
+  tasks:
+    - name: Creating a user account.
+      user: 
+        name: "{{ user_name }}"
+        password: "{{ user_password | password_hash('sha512', 'saltypass') }}"
+        groups: wheel
+
+    - name: Making the user a sudoer.
+      lineinfile:
+        path: /etc/sudoers
+        state: present
+        line: "tj ALL=(ALL) ALL" 
+        insertafter: "root ALL=(ALL) ALL"

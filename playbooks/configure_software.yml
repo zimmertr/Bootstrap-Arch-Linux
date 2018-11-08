@@ -61,14 +61,20 @@
 
     - name: Cloning personal zsh repository.
       git:
-        dest: /home/{{ user_name }}/git/zsh-Configuration
-        repo: https://github.com/zimmertr/zsh-Configuration.git
+        dest: /home/{{ user_name }}/git/dotfiles
+        repo: git@github.com:zimmertr/dotfiles.git
 
-    - name: Copying ZSH configuration.
-      shell: cp /home/{{ user_name }}/git/zsh-Configuration/.zshrc\ \(Arch\)  /home/{{ user_name }}/.zshrc
+    - name: Copying ZSH configuration to user directory.
+      shell: cp /home/{{ user_name }}/git/dotfiles/zshrc_arch  /home/{{ user_name }}/.zshrc
 
-    - name: Copying vim configuration.
-      shell: cp /home/{{ user_name }}/git/zsh-Configuration/vimrc\ \(Arch\)  /home/{{ user_name}}/.vimrc
+    - name: Copying vim configuration to user directory.
+      shell: cp /home/{{ user_name }}/git/dotfiles/vimrc  /home/{{ user_name }}/.vimrc
+
+    - name: Copying ZSH configuration to root directory.
+      shell: cp /home/{{ user_name }}/git/dotfiles/zshrc_arch  /home/root/.zshrc
+
+    - name: Copying vim configuration to root directory.
+      shell: cp /home/{{ user_name }}/git/dotfiles/vimrc  /home/root/.vimrc
 
     - name: Updating user shell.
       user:

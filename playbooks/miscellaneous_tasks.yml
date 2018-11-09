@@ -18,6 +18,3 @@
 
     - name: Updating mlocate database.
       shell: updatedb
-
-    - name: Disabling Thunderbolt ethernet adapter.
-      shell: ip link set enp12s0 down
